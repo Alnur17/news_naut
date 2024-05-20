@@ -9,6 +9,7 @@ class BreakingNewsCard extends StatelessWidget {
   final String time;
   final String title;
   final String author;
+  final VoidCallback ontap;
 
   const BreakingNewsCard(
       {super.key,
@@ -16,75 +17,85 @@ class BreakingNewsCard extends StatelessWidget {
       required this.tag,
       required this.time,
       required this.title,
-      required this.author});
+      required this.author,
+      required this.ontap});
 
   @override
   Widget build(BuildContext context) {
     //TextStyle a = TextStyle();
-    return Container(
-      margin: const EdgeInsets.only(right: 8),
-      width: 350,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        color: searchField,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            margin: const EdgeInsets.all(4),
-            height: 200,
-            width: double.infinity,
-            // decoration: BoxDecoration(
-            //   borderRadius: BorderRadius.circular(15),
-            //   color: searchField,
-            // ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(15),
-              child: CachedNetworkImage(
-                imageUrl: image,
-                fit: BoxFit.cover,
-                placeholder: (context, url) => const Center(
-                    child: CircularProgressIndicator(
-                  color: textGold,
-                )),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
+    return InkWell(
+      onTap: ontap,
+      child: Container(
+        margin: const EdgeInsets.only(right: 8),
+        width: 350,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color: searchField,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              margin: const EdgeInsets.all(4),
+              height: 200,
+              width: double.infinity,
+              // decoration: BoxDecoration(
+              //   borderRadius: BorderRadius.circular(15),
+              //   color: searchField,
+              // ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(15),
+                child: CachedNetworkImage(
+                  imageUrl: image,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) => const Center(
+                      child: CircularProgressIndicator(
+                    color: textGold,
+                  )),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                ),
               ),
             ),
-          ),
-           Padding(
-            padding: const EdgeInsets.only(left: 12, right: 12),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(tag, style: styleWB12,),
-                Text(time, style: styleWB12,),
-              ],
+            Padding(
+              padding: const EdgeInsets.only(left: 12, right: 12),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    tag,
+                    style: styleWB12,
+                  ),
+                  Text(
+                    time,
+                    style: styleWB12,
+                  ),
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 12, right: 12, bottom: 4),
-            child: Text(
-              title,
-              style: styleWB20,
+            Padding(
+              padding: const EdgeInsets.only(left: 12, right: 12, bottom: 4),
+              child: Text(
+                title,
+                style: styleWB20,
+              ),
             ),
-          ),
-           Padding(
-            padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
-            child: Row(
-              children: [
-                const CircleAvatar(
-                  backgroundColor: textBlue,
-                ),
-                const SizedBox(width: 8),
-                Text(
-                  author,
-                  style: styleWB12,
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
+              child: Row(
+                children: [
+                  const CircleAvatar(
+                    backgroundColor: textBlue,
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    author,
+                    style: styleWB12,
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

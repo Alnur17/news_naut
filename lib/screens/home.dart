@@ -1,8 +1,10 @@
 import 'dart:async';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:news_naut/screens/news_detail_screen.dart';
 import 'package:news_naut/widgets/breaking_news_card.dart';
+import 'package:news_naut/widgets/newstile.dart';
 
 import '../constant/color_palate.dart';
 
@@ -39,17 +41,13 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: background,
       appBar: AppBar(
         backgroundColor: background,
+        iconTheme: const IconThemeData(
+          color: textGold, // Change back button color
+        ),
         titleSpacing: 16,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            //     DrawerButton(style: ButtonStyle(iconColor:
-            //     MaterialStateProperty.all(textGold),
-            //       iconSize: MaterialStateProperty.all(32),
-            //
-            // ),
-            //     onPressed: () {},
-            //     ),
             RichText(
               text: const TextSpan(
                 children: [
@@ -64,7 +62,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-
             GestureDetector(
               onTap: () {},
               child: _showGif
@@ -76,11 +73,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       'assets/icons/search_blue_gold_static.png',
                       width: 32,
                     ),
-            )
+            ),
           ],
         ),
       ),
-      body: Column(
+      body: ListView(
+        padding: const EdgeInsets.all(16.0),
         children: [
           const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -96,43 +94,22 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
           const SizedBox(height: 16),
-          const SingleChildScrollView(
+          SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
-              children: [
-                BreakingNewsCard(
+              children: List.generate(10, (index) {
+                return BreakingNewsCard(
                   image:
                       'https://plus.unsplash.com/premium_photo-1671019820530-728527dec7e4?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                  tag: 'Breaking News 1',
-                  time: '1 days ago',
+                  tag: 'Breaking News $index',
+                  time: '1 day ago',
                   title: 'Save the world',
                   author: 'Hridoy',
-                ),
-                BreakingNewsCard(
-                  image:
-                      'https://plus.unsplash.com/premium_photo-1671019820530-728527dec7e4?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                  tag: 'Breaking News 1',
-                  time: '1 days ago',
-                  title: 'Save the world',
-                  author: 'Hridoy',
-                ),
-                BreakingNewsCard(
-                  image:
-                      'https://plus.unsplash.com/premium_photo-1671019820530-728527dec7e4?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                  tag: 'Breaking News 1',
-                  time: '1 days ago',
-                  title: 'Save the world',
-                  author: 'Hridoy',
-                ),
-                BreakingNewsCard(
-                  image:
-                      'https://plus.unsplash.com/premium_photo-1671019820530-728527dec7e4?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                  tag: 'Breaking News 1',
-                  time: '1 days ago',
-                  title: 'Save the world',
-                  author: 'Hridoy',
-                ),
-              ],
+                  ontap: () {
+                    Get.to(() => const NewsDetailPage());
+                  },
+                );
+              }),
             ),
           ),
           const SizedBox(height: 16),
@@ -151,66 +128,19 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           const SizedBox(height: 16),
           Column(
-            children: [
-              Container(
-                height: 150,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: searchField,
-                ),
-                child: Row(
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.all(8),
-                      width: 150,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: matteBlack,
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(15),
-                        child: CachedNetworkImage(
-                          imageUrl:
-                              'https://plus.unsplash.com/premium_photo-1671019820530-728527dec7e4?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                          fit: BoxFit.cover,
-                          placeholder: (context, url) => const Center(
-                              child: CircularProgressIndicator(
-                            color: textGold,
-                          )),
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.error),
-                        ),
-                      ),
-                    ),
-                    const Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'This is the title for the news feed for you',
-                          style: styleWB20,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        Text('1 hours ago'),
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              backgroundColor: textBlue,
-                            ),
-                            SizedBox(width: 8),
-                            Text(
-                              'Hridoy vai',
-                              style: styleWB12,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          )
+            children: List.generate(10, (index) {
+              return NewsTile(
+                image:
+                    'https://plus.unsplash.com/premium_photo-1671019820530-728527dec7e4?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                time: '1 day ago',
+                title: 'This is the news for you',
+                author: 'Hridoy',
+                ontap: () {
+                  Get.to(() => const NewsDetailPage());
+                },
+              );
+            }),
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(

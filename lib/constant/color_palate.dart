@@ -93,9 +93,6 @@ const styleBB16 = TextStyle(
   fontWeight: FontWeight.bold,
 );
 
-
-
-
 const styleGB24 = TextStyle(
   color: textGold,
   fontSize: 24,
@@ -112,12 +109,21 @@ const styleGB16 = TextStyle(
   fontWeight: FontWeight.bold,
 );
 
+const styleWB24 = TextStyle(
+  color: justWhite,
+  fontSize: 24,
+  fontWeight: FontWeight.bold,
+);
 const styleWB20 = TextStyle(
   color: justWhite,
   fontSize: 20,
   fontWeight: FontWeight.bold,
 );
-const styleWB16 = TextStyle(
+const styleWB18 = TextStyle(
+  color: justWhite,
+  fontSize: 18,
+  fontWeight: FontWeight.bold,
+);const styleWB16 = TextStyle(
   color: justWhite,
   fontSize: 16,
   fontWeight: FontWeight.bold,
