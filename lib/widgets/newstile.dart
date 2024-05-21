@@ -53,39 +53,44 @@ class NewsTile extends StatelessWidget {
               ),
             ),
             Expanded(
-
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    title,
-                    style: styleWB20,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  Text(
-                    time,
-                    style: const TextStyle(color: searchFieldText),
-                  ),
-                  Row(
-                    children: [
-                      const CircleAvatar(
-                        backgroundColor: textBlue,
-                        radius: 12,
-                      ),
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: Text(
-                          author,
-                          style: styleWB12,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
+              child: Padding(
+                padding: const EdgeInsets.only(
+                    left: 6, right: 12, top: 12, bottom: 12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      title,
+                      style: styleWB20,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      time,
+                      style: const TextStyle(color: searchFieldText),
+                    ),
+                    const SizedBox(height: 4),
+                    Row(
+                      children: [
+                        const CircleAvatar(
+                          backgroundColor: textBlue,
+                          radius: 12,
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Text(
+                            author,
+                            style: styleWB12,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

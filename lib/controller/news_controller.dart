@@ -7,7 +7,7 @@ import 'package:news_naut/models/news_model.dart';
 
 class NewsController extends GetxController {
   final String apikey = 'a84f185b98954f73bfadede65e6e435f';
-  final String baseUrl = 'https://newsapi.org/v2/everything?q=all&sortBy=publishedAt&apiKey=a84f185b98954f73bfadede65e6e435f';
+  final String baseUrl = 'https://newsapi.org/v2/everything?q=all&sortBy=publishedAt&apiKey=b534a9f07b044a3ea133b2c90712c7f5';
   var breakingNewsList = <NewsModel>[].obs;
 
   Future<void> getBreakingNews() async {

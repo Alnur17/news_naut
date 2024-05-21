@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:news_naut/controller/news_controller.dart';
 import 'package:news_naut/screens/news_detail_screen.dart';
 import 'package:news_naut/screens/search_screen.dart';
+import 'package:news_naut/widgets/bottom_sheet.dart';
 import 'package:news_naut/widgets/breaking_news_card.dart';
 import 'package:news_naut/widgets/newstile.dart';
 
@@ -21,6 +22,14 @@ class _HomeScreenState extends State<HomeScreen> {
   bool _showGif = true;
   Timer? _timer;
   NewsController newsController = Get.find<NewsController>();
+  List<String> categories = [
+    "Technology",
+    "Business",
+    "Health",
+    "Sports",
+    "Entertainment"
+  ];
+  String selectedCategory = "Technology";
 
   @override
   void initState() {
@@ -38,6 +47,42 @@ class _HomeScreenState extends State<HomeScreen> {
   void dispose() {
     _timer?.cancel();
     super.dispose();
+  }
+
+  Widget buildCategoryChips() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: categories.map((category) {
+          bool isSelected = category == selectedCategory;
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4.0),
+            child: ChoiceChip(
+              label: Text(
+                category,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              selected: isSelected,
+              onSelected: (bool selected) {
+                setState(() {
+                  selectedCategory = category;
+                  // Trigger fetching news for the selected category here if needed
+                });
+              },
+              selectedColor: textGold,
+              // Customize the selected color
+              backgroundColor: textBlue,
+              // Customize the background color
+              labelStyle: TextStyle(
+                color: isSelected ? Colors.white : Colors.black,
+              ),
+            ),
+          );
+        }).toList(),
+      ),
+    );
   }
 
   @override
@@ -69,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             GestureDetector(
               onTap: () {
-                Get.to(()=> const SearchScreen());
+                Get.to(() => const SearchScreen());
               },
               child: _showGif
                   ? Image.asset(
@@ -84,23 +129,30 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      body: Obx((){
-        if(newsController.breakingNewsList.isEmpty){
-          return const Center(child: CircularProgressIndicator(color: textGold,),);
-        }else{
+      body: Obx(() {
+        if (newsController.breakingNewsList.isEmpty) {
+          return const Center(
+            child: CircularProgressIndicator(
+              color: textGold,
+            ),
+          );
+        } else {
           return ListView(
             padding: const EdgeInsets.all(16.0),
             children: [
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     'Breaking News',
                     style: styleWB20,
                   ),
-                  Text(
-                    'See all',
-                    style: styleWB16,
+                  InkWell(
+                    onTap: () {},
+                    child: const Text(
+                      'See all',
+                      style: styleWB16,
+                    ),
                   ),
                 ],
               ),
@@ -115,23 +167,30 @@ class _HomeScreenState extends State<HomeScreen> {
                       title: news.title,
                       author: news.author ?? 'Unknown',
                       ontap: () {
-                        Get.to(() =>  NewsDetailPage(news: news,));
+                        Get.to(() => NewsDetailPage(
+                              news: news,
+                            ));
                       },
                     );
                   }).toList(),
                 ),
               ),
               const SizedBox(height: 16),
-              const Row(
+              buildCategoryChips(),
+              const SizedBox(height: 16),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     'News for you',
                     style: styleWB20,
                   ),
-                  Text(
-                    'See all',
-                    style: styleWB16,
+                  InkWell(
+                    onTap: () {},
+                    child: const Text(
+                      'See all',
+                      style: styleWB16,
+                    ),
                   ),
                 ],
               ),
@@ -144,7 +203,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     title: news.title,
                     author: news.author ?? 'Unknown',
                     ontap: () {
-                      Get.to(() =>  NewsDetailPage(news: news,));
+                      Get.to(() => NewsDetailPage(
+                            news: news,
+                          ));
                     },
                   );
                 }).toList(),
@@ -153,11 +214,10 @@ class _HomeScreenState extends State<HomeScreen> {
           );
         }
       }),
-
-
-
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          bottomSheets(context);
+        },
         backgroundColor: textGold,
         child: const Icon(
           Icons.person,
@@ -167,5 +227,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-

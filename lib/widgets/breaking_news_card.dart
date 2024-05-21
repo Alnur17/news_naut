@@ -58,14 +58,14 @@ class BreakingNewsCard extends StatelessWidget {
             ),
             Padding(
               padding:
-                  const EdgeInsets.only(left: 12, right: 12, top: 8, bottom: 8),
+                  const EdgeInsets.only(left: 12, right: 12, top: 8, bottom: 4),
               child: Text(
                 time,
                 style: styleWB12,
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 12, right: 12, bottom: 8),
+              padding: const EdgeInsets.only(left: 12, right: 12, bottom: 4),
               child: Text(
                 title,
                 style: styleWB20,
@@ -74,7 +74,7 @@ class BreakingNewsCard extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 12, right: 12, bottom: 8),
+              padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
               child: Row(
                 children: [
                   const CircleAvatar(
