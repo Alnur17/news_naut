@@ -5,7 +5,7 @@ import '../constant/color_palate.dart';
 
 class BreakingNewsCard extends StatelessWidget {
   final String image;
-  final String tag;
+
   final String time;
   final String title;
   final String author;
@@ -14,7 +14,6 @@ class BreakingNewsCard extends StatelessWidget {
   const BreakingNewsCard(
       {super.key,
       required this.image,
-      required this.tag,
       required this.time,
       required this.title,
       required this.author,
@@ -39,57 +38,56 @@ class BreakingNewsCard extends StatelessWidget {
               margin: const EdgeInsets.all(4),
               height: 200,
               width: double.infinity,
-              // decoration: BoxDecoration(
-              //   borderRadius: BorderRadius.circular(15),
-              //   color: searchField,
-              // ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: searchField,
+              ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(15),
                 child: CachedNetworkImage(
                   imageUrl: image,
                   fit: BoxFit.cover,
                   placeholder: (context, url) => const Center(
-                      child: CircularProgressIndicator(
-                    color: textGold,
-                  )),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                    child: CircularProgressIndicator(
+                      color: textGold,
+                    ),
+                  ),
+
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 12, right: 12),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    tag,
-                    style: styleWB12,
-                  ),
-                  Text(
-                    time,
-                    style: styleWB12,
-                  ),
-                ],
+              padding:
+                  const EdgeInsets.only(left: 12, right: 12, top: 8, bottom: 8),
+              child: Text(
+                time,
+                style: styleWB12,
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 12, right: 12, bottom: 4),
+              padding: const EdgeInsets.only(left: 12, right: 12, bottom: 8),
               child: Text(
                 title,
                 style: styleWB20,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
+              padding: const EdgeInsets.only(left: 12, right: 12, bottom: 8),
               child: Row(
                 children: [
                   const CircleAvatar(
                     backgroundColor: textBlue,
                   ),
                   const SizedBox(width: 8),
-                  Text(
-                    author,
-                    style: styleWB12,
+                  Expanded(
+                    child: Text(
+                      author,
+                      style: styleWB12,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                 ],
               ),

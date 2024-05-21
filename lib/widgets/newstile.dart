@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../constant/color_palate.dart';
 
 class NewsTile extends StatelessWidget {
@@ -41,17 +41,19 @@ class NewsTile extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(15),
                 child: CachedNetworkImage(
+                  height: double.infinity,
                   imageUrl: image,
                   fit: BoxFit.cover,
                   placeholder: (context, url) => const Center(
-                      child: CircularProgressIndicator(
-                    color: textGold,
-                  )),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                    child: CircularProgressIndicator(
+                      color: textGold,
+                    ),
+                  ),
                 ),
               ),
             ),
             Expanded(
+
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -60,7 +62,7 @@ class NewsTile extends StatelessWidget {
                     title,
                     style: styleWB20,
                     maxLines: 2,
-                    //overflow: TextOverflow.ellipsis,
+                    overflow: TextOverflow.ellipsis,
                   ),
                   Text(
                     time,
@@ -70,12 +72,16 @@ class NewsTile extends StatelessWidget {
                     children: [
                       const CircleAvatar(
                         backgroundColor: textBlue,
-                        radius: 16,
+                        radius: 12,
                       ),
                       const SizedBox(width: 8),
-                      Text(
-                        author,
-                        style: styleWB12,
+                      Expanded(
+                        child: Text(
+                          author,
+                          style: styleWB12,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
                     ],
                   ),
