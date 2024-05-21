@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:news_naut/controller/news_controller.dart';
 import 'package:news_naut/screens/news_detail_screen.dart';
+import 'package:news_naut/screens/search_screen.dart';
 import 'package:news_naut/widgets/breaking_news_card.dart';
 import 'package:news_naut/widgets/newstile.dart';
 
@@ -67,7 +68,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Get.to(()=> const SearchScreen());
+              },
               child: _showGif
                   ? Image.asset(
                       'assets/icons/search_blue_gold.gif',
@@ -107,8 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Row(
                   children: newsController.breakingNewsList.map((news) {
                     return BreakingNewsCard(
-                      image: news.urlToImage ?? 'https://plus.unsplash.com/premium_photo-1671019820530-728527dec7e4?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-
+                      image: news.urlToImage!,
                       time: news.publishedAt.toString(),
                       title: news.title,
                       author: news.author ?? 'Unknown',
@@ -137,7 +139,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Column(
                 children: newsController.breakingNewsList.map((news) {
                   return NewsTile(
-                    image: news.urlToImage ?? 'https://plus.unsplash.com/premium_photo-1671019820530-728527dec7e4?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                    image: news.urlToImage!,
                     time: news.publishedAt.toString(),
                     title: news.title,
                     author: news.author ?? 'Unknown',
