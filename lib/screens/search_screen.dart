@@ -17,7 +17,6 @@ class _SearchScreenState extends State<SearchScreen> {
   final NewsController newsController = Get.find();
   final TextEditingController _searchController = TextEditingController();
   bool _isSearching = false;
-  DateTime currentDate = DateTime.now();
 
   void _onSearchChanged(String query) {
     if (query.isNotEmpty) {
@@ -67,7 +66,7 @@ class _SearchScreenState extends State<SearchScreen> {
             ? newsController.searchList
             : newsController.breakingNewsList;
         if (newsList.isEmpty) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator(color: textGold,));
         } else {
           return ListView.builder(
             padding: const EdgeInsets.all(16.0),

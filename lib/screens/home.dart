@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:news_naut/controller/news_controller.dart';
+import 'package:news_naut/screens/category_screen.dart';
 import 'package:news_naut/screens/news_detail_screen.dart';
 import 'package:news_naut/screens/search_screen.dart';
 import 'package:news_naut/widgets/bottom_sheet.dart';
@@ -23,13 +24,15 @@ class _HomeScreenState extends State<HomeScreen> {
   Timer? _timer;
   NewsController newsController = Get.find<NewsController>();
   List<String> categories = [
-    "Technology",
-    "Business",
-    "Health",
-    "Sports",
+    'Technology',
+    'Business',
+    'Health',
+    'Sports',
     "Entertainment"
+    'General',
+    'Science'
   ];
-  String selectedCategory = "Technology";
+  String selectedCategory = " ";
 
   @override
   void initState() {
@@ -60,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: ChoiceChip(
               label: Text(
                 category,
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -68,8 +71,8 @@ class _HomeScreenState extends State<HomeScreen> {
               onSelected: (bool selected) {
                 setState(() {
                   selectedCategory = category;
-                  // Trigger fetching news for the selected category here if needed
                 });
+                Get.to(() => CategoryScreen(category: category));
               },
               selectedColor: textGold,
               // Customize the selected color
@@ -176,7 +179,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               const SizedBox(height: 16),
-              buildCategoryChips(),
+               buildCategoryChips(),
               const SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

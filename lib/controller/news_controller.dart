@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:news_naut/models/news_model.dart';
 
 class NewsController extends GetxController {
-  final String apikey = 'a84f185b98954f73bfadede65e6e435f';
+  final String apikey = 'b534a9f07b044a3ea133b2c90712c7f5';
   final String baseUrl = 'https://newsapi.org/v2/everything?q=all&sortBy=publishedAt&apiKey=b534a9f07b044a3ea133b2c90712c7f5';
   var breakingNewsList = <NewsModel>[].obs;
 
@@ -25,15 +25,34 @@ class NewsController extends GetxController {
     }
   }
 
+
   var searchList = <NewsModel>[].obs;
 
   Future<void> searchNews(String query) async {
     try {
       final response = await http.get(Uri.parse(
-          'https://newsapi.org/v2/everything?q=$query&from=2024-04-20&sortBy=publishedAt&apiKey=$apikey'));
+          'https://newsapi.org/v2/everything?q=$query&sortBy=publishedAt&apiKey=$apikey'));
       if (response.statusCode == 200) {
         List<dynamic> data = json.decode(response.body)['articles'];
         searchList.value =
+            data.map((json) => NewsModel.fromJson(json)).where((article) => article.urlToImage != null).toList();
+      } else {
+        throw Exception('Failed to load news');
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  var categoryNewsList = <NewsModel>[].obs;
+
+  Future<void> getNewsByCategory(String query) async {
+    try {
+      final response = await http.get(Uri.parse(
+          'https://newsapi.org/v2/everything?q=$query&sortBy=publishedAt&apiKey=$apikey'));
+      if (response.statusCode == 200) {
+        List<dynamic> data = json.decode(response.body)['articles'];
+        categoryNewsList.value =
             data.map((json) => NewsModel.fromJson(json)).where((article) => article.urlToImage != null).toList();
       } else {
         throw Exception('Failed to load news');
