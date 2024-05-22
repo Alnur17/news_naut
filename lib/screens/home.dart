@@ -11,6 +11,7 @@ import 'package:news_naut/widgets/breaking_news_card.dart';
 import 'package:news_naut/widgets/newstile.dart';
 
 import '../constant/color_palate.dart';
+import '../data/dummy_data.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -44,6 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
 
     newsController.getBreakingNews();
+    newsController.recommendedNews();
   }
 
   @override
@@ -55,12 +57,14 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget buildCategoryChips() {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
+      padding: const EdgeInsets.only(left: 8,right: 12),
       child: Row(
         children: categories.map((category) {
           bool isSelected = category == selectedCategory;
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4.0),
+            padding: const EdgeInsets.only(left: 4),
             child: ChoiceChip(
+              padding: const EdgeInsets.all(12),
               label: Text(
                 category,
                 style: const TextStyle(
@@ -97,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
         iconTheme: const IconThemeData(
           color: textGold, // Change back button color
         ),
-        titleSpacing: 16,
+        titleSpacing: 12,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -141,31 +145,33 @@ class _HomeScreenState extends State<HomeScreen> {
           );
         } else {
           return ListView(
-            padding: const EdgeInsets.all(16.0),
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Breaking News',
-                    style: styleWB20,
-                  ),
-                  InkWell(
-                    onTap: () {},
-                    child: const Text(
-                      'See all',
-                      style: styleWB16,
+              Padding(
+                padding: const EdgeInsets.only(left: 12,right: 12,bottom: 12),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Breaking News',
+                      style: styleWB20,
                     ),
-                  ),
-                ],
+                    InkWell(
+                      onTap: () {},
+                      child: const Text(
+                        'See all',
+                        style: styleWB16,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              const SizedBox(height: 16),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.only(left: 12,right: 12,bottom: 12),
                 child: Row(
                   children: newsController.breakingNewsList.map((news) {
                     return BreakingNewsCard(
-                      image: news.urlToImage!,
+                      image: news.urlToImage ?? defaultImage,
                       time: news.publishedAt.toString(),
                       title: news.title,
                       author: news.author ?? 'Unknown',
@@ -178,30 +184,30 @@ class _HomeScreenState extends State<HomeScreen> {
                   }).toList(),
                 ),
               ),
-              const SizedBox(height: 16),
                buildCategoryChips(),
-              const SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'News for you',
-                    style: styleWB20,
-                  ),
-                  InkWell(
-                    onTap: () {},
-                    child: const Text(
-                      'See all',
-                      style: styleWB16,
+              Padding(
+                padding: const EdgeInsets.only(left: 12,right: 12,top: 12,bottom: 12),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'News for you',
+                      style: styleWB20,
                     ),
-                  ),
-                ],
+                    InkWell(
+                      onTap: () {},
+                      child: const Text(
+                        'See all',
+                        style: styleWB16,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              const SizedBox(height: 16),
               Column(
-                children: newsController.breakingNewsList.map((news) {
+                children: newsController.recNewsList.map((news) {
                   return NewsTile(
-                    image: news.urlToImage!,
+                    image: news.urlToImage ?? defaultImage,
                     time: news.publishedAt.toString(),
                     title: news.title,
                     author: news.author ?? 'Unknown',

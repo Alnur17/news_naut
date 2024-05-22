@@ -1,10 +1,24 @@
+import '../models/profile_category.dart';
 
- const String defaultImage ='https://cdn-icons-png.flaticon.com/512/2748/2748558.png';
+const defaultImage = 'https://salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png';
 
+final List<ProfileCategory> items = [
+ ProfileCategory(
+  title: 'Profile',
+  subtitle: 'Edit your profile here!',
+  image: 'assets/icons/Edit.png',
+ ),
 
-// var data = {
-//   'image': 'https://plus.unsplash.com/premium_photo-1671019820530-728527dec7e4?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-//   'tag': 'breaking news no 1',
-//   'time': '1 day\s ago',
-//   'title': 'Save the world first',
-// };
+ ProfileCategory(
+  title: 'Security',
+  subtitle: 'Check out the details here',
+  image: 'assets/icons/Security.png',
+ ),
+
+ ProfileCategory(
+  title: 'About',
+  subtitle: 'Know more about the app',
+  image: 'assets/icons/About.png',
+ ),
+
+];

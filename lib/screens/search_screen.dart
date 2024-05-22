@@ -42,9 +42,10 @@ class _SearchScreenState extends State<SearchScreen> {
     return Scaffold(
       backgroundColor: background,
       appBar: AppBar(
-        titleSpacing: 16,
+        titleSpacing: 12,
+        leadingWidth: 32, // automatically generated back button space
         title: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 12),
           decoration: BoxDecoration(
             color: textBlue,
             borderRadius: BorderRadius.circular(30),
@@ -69,7 +70,7 @@ class _SearchScreenState extends State<SearchScreen> {
           return const Center(child: CircularProgressIndicator(color: textGold,));
         } else {
           return ListView.builder(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.only(top: 12,bottom: 8),
             itemCount: newsList.length,
             itemBuilder: (context, index) {
               final news = newsList[index];

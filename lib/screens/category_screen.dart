@@ -19,7 +19,7 @@ class CategoryScreen extends StatelessWidget {
       backgroundColor: background,
       appBar: AppBar(
         backgroundColor: background,
-        iconTheme: const IconThemeData(
+        iconTheme:  const IconThemeData(
           color: textGold, // Change back button color
         ),
         title: Text(
@@ -36,7 +36,6 @@ class CategoryScreen extends StatelessWidget {
           );
         } else {
           return ListView.builder(
-            padding: const EdgeInsets.all(16.0),
             itemCount: newsController.categoryNewsList.length,
             itemBuilder: (context, index) {
               var news = newsController.categoryNewsList[index];

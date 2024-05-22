@@ -29,7 +29,7 @@ class BreakingNewsCard extends StatelessWidget {
         width: 350,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color: searchField,
+          color: containerColor,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,7 +78,8 @@ class BreakingNewsCard extends StatelessWidget {
               child: Row(
                 children: [
                   const CircleAvatar(
-                    backgroundColor: textBlue,
+                    backgroundColor: textGold,
+                    radius: 16,
                   ),
                   const SizedBox(width: 8),
                   Expanded(

@@ -1,25 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:news_naut/screens/bottom_sheet_screen.dart';
 import '../constant/color_palate.dart';
 
 void bottomSheets(BuildContext context) {
   showModalBottomSheet(
-    backgroundColor: textGold,
-    context: context,
-    builder: (context) {
-      return  Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            width: double.infinity,
-            alignment: Alignment.center,
-            child: const Text(
-              'data',
-              style: styleWB20,
-            ),
-          ),
-        ],
-      );
-    },
-
-  );
+      backgroundColor: textGold,
+      // isScrollControlled: true,
+      // useSafeArea: true,
+      context: context,
+      builder: (context) => const BottomSheetScreen());
 }

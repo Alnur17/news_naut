@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     Get.put(NewsController());
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'NewsNaut',
+      title: 'News Naut',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,

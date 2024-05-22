@@ -21,13 +21,14 @@ class NewsTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      splashColor: textGold,
       onTap: ontap,
       child: Container(
-        margin: const EdgeInsets.only(bottom: 8),
+        margin: const EdgeInsets.only(left: 12, right: 12, bottom: 8),
         height: 150,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color: searchField,
+          color: containerColor,
         ),
         child: Row(
           children: [
