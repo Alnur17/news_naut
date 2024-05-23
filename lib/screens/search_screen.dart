@@ -79,7 +79,7 @@ class _SearchScreenState extends State<SearchScreen> {
               final news = newsList[index];
               return NewsTile(
                 image: news.urlToImage!,
-                time: news.publishedAt.toString(),
+                time: news.publishedAt,
                 title: news.title,
                 author: news.author ?? 'Unknown',
                 ontap: () {

@@ -6,7 +6,7 @@ class NewsModel {
   final String? description;
   final String url;
   final String? urlToImage;
-  final String publishedAt;
+  final DateTime publishedAt;
   final String? content;
 
   NewsModel({
@@ -26,7 +26,7 @@ class NewsModel {
       description: json['description'],
       url: json['url'],
       urlToImage: json['urlToImage'],
-      publishedAt: json['publishedAt'],
+      publishedAt: DateTime.parse(json['publishedAt']),
       content: json['content'],
     );
   }

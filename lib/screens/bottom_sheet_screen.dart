@@ -18,7 +18,7 @@ class BottomSheetScreen extends StatelessWidget {
           onPressed: () {
             Get.back();
           },
-          icon: Icon(Icons.close),
+          icon: const Icon(Icons.close),
         ),
         iconTheme: const IconThemeData(color: textGold),
       ),

@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:news_naut/constant/color_palate.dart';
+import 'package:news_naut/data/dummy_data.dart';
 import 'package:news_naut/models/news_model.dart';
 
 import '../constant/style.dart';
@@ -10,8 +12,12 @@ class NewsDetailPage extends StatelessWidget {
 
   const NewsDetailPage({super.key, required this.news});
 
+
+
   @override
   Widget build(BuildContext context) {
+    String formattedDate = DateFormat('yyyy-MM-dd').format(news.publishedAt);
+
     return Scaffold(
       backgroundColor: background,
       appBar: AppBar(
@@ -37,22 +43,17 @@ class NewsDetailPage extends StatelessWidget {
             ),
             const SizedBox(height: 8.0),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(
-                  flex: 2,
-                  child: Text(
-                    news.author ?? 'Unknown',
-                    style: styleWB16,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
+                Text(
+                  news.author ?? 'Unknown',
+                  style: styleWB16,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                Expanded(
-                  flex: 1,
-                  child: Text(
-                    news.publishedAt.toString(),
-                    style: styleWB16,
-                  ),
+                Text(
+                  formattedDate,
+                  style: styleWB16,
                 ),
               ],
             ),
@@ -60,8 +61,8 @@ class NewsDetailPage extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(16),
               child: CachedNetworkImage(
-                imageUrl: news.urlToImage!,
-                height: 200.0,
+                imageUrl: news.urlToImage ?? defaultImage,
+                height: 200,
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),

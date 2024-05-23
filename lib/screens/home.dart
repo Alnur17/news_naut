@@ -6,6 +6,8 @@ import 'package:news_naut/controller/news_controller.dart';
 import 'package:news_naut/screens/category_screen.dart';
 import 'package:news_naut/screens/news_detail_screen.dart';
 import 'package:news_naut/screens/search_screen.dart';
+import 'package:news_naut/screens/see_all_breaking_news.dart';
+import 'package:news_naut/screens/see_all_news_for_you.dart';
 import 'package:news_naut/widgets/bottom_sheet.dart';
 import 'package:news_naut/widgets/breaking_news_card.dart';
 import 'package:news_naut/widgets/newstile.dart';
@@ -150,7 +152,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: styleWB20,
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Get.to(()=> const SeeAllBreakingNews());
+                      },
                       child: const Text(
                         'See all',
                         style: styleWB16,
@@ -166,7 +170,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: newsController.breakingNewsList.map((news) {
                     return BreakingNewsCard(
                       image: news.urlToImage ?? defaultImage,
-                      time: news.publishedAt.toString(),
+                      time: news.publishedAt,
                       title: news.title,
                       author: news.author ?? 'Unknown',
                       ontap: () {
@@ -190,7 +194,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: styleWB20,
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Get.to(()=> const SeeAllNewsForYou());
+                      },
                       child: const Text(
                         'See all',
                         style: styleWB16,
@@ -203,7 +209,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: newsController.recNewsList.map((news) {
                   return NewsTile(
                     image: news.urlToImage ?? defaultImage,
-                    time: news.publishedAt.toString(),
+                    time: news.publishedAt,
                     title: news.title,
                     author: news.author ?? 'Unknown',
                     ontap: () {
@@ -222,10 +228,10 @@ class _HomeScreenState extends State<HomeScreen> {
         onPressed: () {
           bottomSheets(context);
         },
-        backgroundColor: textGold,
-        child: const Icon(
-          Icons.person,
-          size: 30,
+        shape: const CircleBorder(side: BorderSide(width: 1, color: textGold)),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(30),
+          child: Image.asset('assets/images/Rectangle1.png'),
         ),
       ),
     );

@@ -1,12 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../constant/color_palate.dart';
 import '../constant/style.dart';
 
 class NewsTile extends StatelessWidget {
   final String image;
-  final String time;
+  final DateTime time;
   final String title;
   final String author;
   final VoidCallback ontap;
@@ -21,6 +22,7 @@ class NewsTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String formattedDate = DateFormat('yyyy-MM-dd').format(time);
     return InkWell(
       splashColor: textGold,
       onTap: ontap,
@@ -71,7 +73,7 @@ class NewsTile extends StatelessWidget {
                     const SizedBox(height: 4),
 
                     Text(
-                    time,
+                      formattedDate,
                       style: const TextStyle(color: searchFieldText),
                     ),
                     const SizedBox(height: 4),

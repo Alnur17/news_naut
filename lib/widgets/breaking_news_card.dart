@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../constant/color_palate.dart';
 import '../constant/style.dart';
@@ -7,7 +8,7 @@ import '../constant/style.dart';
 class BreakingNewsCard extends StatelessWidget {
   final String image;
 
-  final String time;
+  final DateTime time;
   final String title;
   final String author;
   final VoidCallback ontap;
@@ -22,6 +23,7 @@ class BreakingNewsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String formattedDate = DateFormat('yyyy-MM-dd').format(time);
     return InkWell(
       onTap: ontap,
       child: Container(
@@ -60,7 +62,7 @@ class BreakingNewsCard extends StatelessWidget {
               padding:
                   const EdgeInsets.only(left: 12, right: 12, top: 8, bottom: 4),
               child: Text(
-                time,
+                formattedDate,
                 style: styleWB12,
               ),
             ),

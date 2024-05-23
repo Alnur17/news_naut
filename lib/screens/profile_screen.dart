@@ -12,11 +12,22 @@ class ProfileScreen extends StatelessWidget {
       backgroundColor: background,
       appBar: AppBar(
         backgroundColor: background,
+        titleSpacing: 0,
         title: const Text(
           'Profile',
           style: styleWB24,
         ),
-        iconTheme: const IconThemeData(color: textGold),
+        iconTheme: const IconThemeData(color: textGold,size: 26),
+      ),
+      body: const Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Name: Sultan Md. Alnur',style: styleWB14),
+            Text('Address: Laxmipur, Rajshahi, Bangladesh',style: styleWB14),
+          ],
+        ),
       ),
     );
   }

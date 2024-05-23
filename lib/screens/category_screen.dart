@@ -42,7 +42,7 @@ class CategoryScreen extends StatelessWidget {
               var news = newsController.categoryNewsList[index];
               return NewsTile(
                 image: news.urlToImage!,
-                time: news.publishedAt.toString(),
+                time: news.publishedAt,
                 title: news.title,
                 author: news.author ?? 'Unknown',
                 ontap: () {

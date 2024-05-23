@@ -7,8 +7,9 @@ import 'package:news_naut/models/news_model.dart';
 
 class NewsController extends GetxController {
   //final String apikey = 'b534a9f07b044a3ea133b2c90712c7f5';
-  final String apikey = '9e92677796a64e58a96b99d897200d90';
-  final String baseUrl = 'https://newsapi.org/v2/everything?q=all&sortBy=publishedAt&apiKey=9e92677796a64e58a96b99d897200d90';
+  //final String apikey = 'a84f185b98954f73bfadede65e6e435f';
+  final String apikey = 'a84f185b98954f73bfadede65e6e435f';
+  final String baseUrl = 'https://newsapi.org/v2/everything?q=all&sortBy=publishedAt&apiKey=a84f185b98954f73bfadede65e6e435f';
   var breakingNewsList = <NewsModel>[].obs;
 
   Future<void> getBreakingNews() async {
@@ -30,10 +31,9 @@ class NewsController extends GetxController {
   var recNewsList = <NewsModel>[].obs;
   Future<void> recommendedNews() async {
     try {
-      final response = await http.get(Uri.parse('https://newsapi.org/v2/everything?q=all&sortBy=relevancy&apiKey=9e92677796a64e58a96b99d897200d90'));
+      final response = await http.get(Uri.parse('https://newsapi.org/v2/everything?q=all&sortBy=relevancy&apiKey=a84f185b98954f73bfadede65e6e435f'));
       if (response.statusCode == 200) {
         List<dynamic> data = json.decode(response.body)['articles'];
-        print("popularity - ${data.length}");
         recNewsList.value =
             data.map((json) => NewsModel.fromJson(json)).where((article) => article.urlToImage != null).toList();
         print(recNewsList.length);
