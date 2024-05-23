@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:news_naut/screens/profile_screen.dart';
 
 import '../constant/color_palate.dart';
+import '../constant/style.dart';
 import '../screens/about_screen.dart';
 import '../screens/security_&_privacy_screen.dart';
 

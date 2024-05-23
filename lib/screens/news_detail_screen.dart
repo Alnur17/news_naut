@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:news_naut/constant/color_palate.dart';
 import 'package:news_naut/models/news_model.dart';
 
+import '../constant/style.dart';
+
 class NewsDetailPage extends StatelessWidget {
   final NewsModel news;
 
@@ -50,8 +52,6 @@ class NewsDetailPage extends StatelessWidget {
                   child: Text(
                     news.publishedAt.toString(),
                     style: styleWB16,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
               ],
@@ -68,7 +68,7 @@ class NewsDetailPage extends StatelessWidget {
             ),
             const SizedBox(height: 16.0),
             Text(
-              news.content ?? 'No contain....',
+              news.content ?? 'No contain available....',
               style: styleWB18,
             ),
           ],

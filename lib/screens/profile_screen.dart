@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:news_naut/constant/color_palate.dart';
 
+import '../constant/style.dart';
+
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 

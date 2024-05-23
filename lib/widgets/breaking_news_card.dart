@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../constant/color_palate.dart';
+import '../constant/style.dart';
 
 class BreakingNewsCard extends StatelessWidget {
   final String image;
@@ -21,7 +22,6 @@ class BreakingNewsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //TextStyle a = TextStyle();
     return InkWell(
       onTap: ontap,
       child: Container(
@@ -69,7 +69,7 @@ class BreakingNewsCard extends StatelessWidget {
               child: Text(
                 title,
                 style: styleWB20,
-                maxLines: 2,
+                maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
@@ -79,7 +79,7 @@ class BreakingNewsCard extends StatelessWidget {
                 children: [
                   const CircleAvatar(
                     backgroundColor: textGold,
-                    radius: 16,
+                    radius: 4,
                   ),
                   const SizedBox(width: 8),
                   Expanded(

@@ -5,6 +5,7 @@ import 'package:news_naut/controller/news_controller.dart';
 import 'package:news_naut/screens/news_detail_screen.dart';
 import 'package:news_naut/widgets/newstile.dart';
 import '../constant/color_palate.dart';
+import '../constant/style.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -43,18 +44,20 @@ class _SearchScreenState extends State<SearchScreen> {
       backgroundColor: background,
       appBar: AppBar(
         titleSpacing: 12,
-        leadingWidth: 32, // automatically generated back button space
+        leadingWidth: 34, // automatically generated back button space
         title: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           decoration: BoxDecoration(
-            color: textBlue,
+            color: containerColor,
             borderRadius: BorderRadius.circular(30),
           ),
           child: TextField(
             controller: _searchController,
             decoration: const InputDecoration(
               hintText: 'Search news...',
+              hintStyle: styleWB16,
               border: InputBorder.none,
+
             ),
             onChanged: _onSearchChanged,
           ),
@@ -70,7 +73,7 @@ class _SearchScreenState extends State<SearchScreen> {
           return const Center(child: CircularProgressIndicator(color: textGold,));
         } else {
           return ListView.builder(
-            padding: EdgeInsets.only(top: 12,bottom: 8),
+            padding: const EdgeInsets.only(top: 12,bottom: 8),
             itemCount: newsList.length,
             itemBuilder: (context, index) {
               final news = newsList[index];

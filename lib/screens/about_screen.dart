@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../constant/color_palate.dart';
+import '../constant/style.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});

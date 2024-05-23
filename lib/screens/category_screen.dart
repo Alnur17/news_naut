@@ -4,6 +4,7 @@ import 'package:news_naut/controller/news_controller.dart';
 import 'package:news_naut/screens/news_detail_screen.dart';
 import 'package:news_naut/widgets/newstile.dart';
 import '../constant/color_palate.dart';
+import '../constant/style.dart';
 
 class CategoryScreen extends StatelessWidget {
   final String category;

@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../constant/color_palate.dart';
+import '../constant/style.dart';
 
 class NewsTile extends StatelessWidget {
   final String image;
@@ -68,8 +69,9 @@ class NewsTile extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 4),
+
                     Text(
-                      time,
+                    time,
                       style: const TextStyle(color: searchFieldText),
                     ),
                     const SizedBox(height: 4),
@@ -77,7 +79,7 @@ class NewsTile extends StatelessWidget {
                       children: [
                         const CircleAvatar(
                           backgroundColor: textBlue,
-                          radius: 12,
+                          radius: 4,
                         ),
                         const SizedBox(width: 8),
                         Expanded(

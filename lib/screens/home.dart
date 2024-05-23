@@ -11,6 +11,7 @@ import 'package:news_naut/widgets/breaking_news_card.dart';
 import 'package:news_naut/widgets/newstile.dart';
 
 import '../constant/color_palate.dart';
+import '../constant/style.dart';
 import '../data/dummy_data.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -28,12 +29,11 @@ class _HomeScreenState extends State<HomeScreen> {
     'Technology',
     'Business',
     'Health',
+    'Entertainment',
     'Sports',
-    "Entertainment"
     'General',
     'Science'
   ];
-  String selectedCategory = " ";
 
   @override
   void initState() {
@@ -57,10 +57,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget buildCategoryChips() {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      padding: const EdgeInsets.only(left: 8,right: 12),
+      padding: const EdgeInsets.only(left: 8, right: 12),
       child: Row(
         children: categories.map((category) {
-          bool isSelected = category == selectedCategory;
           return Padding(
             padding: const EdgeInsets.only(left: 4),
             child: ChoiceChip(
@@ -71,19 +70,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              selected: isSelected,
+              selected: false,
               onSelected: (bool selected) {
-                setState(() {
-                  selectedCategory = category;
-                });
                 Get.to(() => CategoryScreen(category: category));
               },
-              selectedColor: textGold,
-              // Customize the selected color
-              backgroundColor: textBlue,
-              // Customize the background color
-              labelStyle: TextStyle(
-                color: isSelected ? Colors.white : Colors.black,
+              backgroundColor: containerColor,
+              //Customize the background color
+              labelStyle: const TextStyle(
+                color: Colors.white,
               ),
             ),
           );
@@ -147,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
           return ListView(
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 12,right: 12,bottom: 12),
+                padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -167,7 +161,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.only(left: 12,right: 12,bottom: 12),
+                padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
                 child: Row(
                   children: newsController.breakingNewsList.map((news) {
                     return BreakingNewsCard(
@@ -184,9 +178,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   }).toList(),
                 ),
               ),
-               buildCategoryChips(),
+              buildCategoryChips(),
               Padding(
-                padding: const EdgeInsets.only(left: 12,right: 12,top: 12,bottom: 12),
+                padding: const EdgeInsets.only(
+                    left: 12, right: 12, top: 12, bottom: 12),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
