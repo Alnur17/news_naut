@@ -1,6 +1,6 @@
 import '../models/profile_category.dart';
 
-const defaultImage = 'https://salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png';
+const String defaultImage = 'https://salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png';
 
 final List<ProfileCategory> items = [
  ProfileCategory(

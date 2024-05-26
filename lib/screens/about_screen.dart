@@ -29,7 +29,7 @@ class AboutScreen extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Text(
-              'This is a Wallpaper application that showcases various features and functionalities.',
+              'This is a News application that showcases various features and functionalities.',
               style: styleWB14,),
 
             SizedBox(height: 20),

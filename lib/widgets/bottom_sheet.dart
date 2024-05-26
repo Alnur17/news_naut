@@ -5,8 +5,8 @@ import '../constant/color_palate.dart';
 void bottomSheets(BuildContext context) {
   showModalBottomSheet(
       backgroundColor: textGold,
-      // isScrollControlled: true,
-      // useSafeArea: true,
+       isScrollControlled: true,
+       useSafeArea: true,
       context: context,
       builder: (context) => const BottomSheetScreen());
 }

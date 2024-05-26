@@ -68,3 +68,9 @@ const styleWB12 = TextStyle(
   fontSize: 12,
   fontWeight: FontWeight.bold,
 );
+
+const styleSFB16 = TextStyle(
+  color: searchFieldText,
+  fontSize: 16,
+  fontWeight: FontWeight.bold,
+);

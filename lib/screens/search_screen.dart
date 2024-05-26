@@ -55,10 +55,11 @@ class _SearchScreenState extends State<SearchScreen> {
             controller: _searchController,
             decoration: const InputDecoration(
               hintText: 'Search news...',
-              hintStyle: styleWB16,
+              hintStyle: styleSFB16,
               border: InputBorder.none,
 
             ),
+            style: styleWB16,
             onChanged: _onSearchChanged,
           ),
         ),

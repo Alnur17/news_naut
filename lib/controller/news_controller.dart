@@ -17,8 +17,11 @@ class NewsController extends GetxController {
         List<dynamic> data = json.decode(response.body)['articles'];
         breakingNewsList.value = data
             .map((json) => NewsModel.fromJson(json))
-            .where((article) => article.urlToImage != null)
+            .where((article) => article.urlToImage != null )
             .toList();
+        print(breakingNewsList.length);
+        print('$breakingNewsList This is breaking news');
+
       } else {
         throw Exception('Failed to load news');
       }
@@ -31,7 +34,7 @@ class NewsController extends GetxController {
 
   Future<void> recommendedNews() async {
     try {
-      final response = await http.get(Uri.parse(Urls.relevance));
+      final response = await http.get(Uri.parse(Urls.relevancy));
       if (response.statusCode == 200) {
         List<dynamic> data = json.decode(response.body)['articles'];
         recNewsList.value = data
@@ -39,6 +42,7 @@ class NewsController extends GetxController {
             .where((article) => article.urlToImage != null)
             .toList();
         print(recNewsList.length);
+        print('$recNewsList This is recommended news');
       } else {
         throw Exception('Failed to load news');
       }
@@ -58,6 +62,7 @@ class NewsController extends GetxController {
             .map((json) => NewsModel.fromJson(json))
             .where((article) => article.urlToImage != null)
             .toList();
+        print(searchList.length);
       } else {
         throw Exception('Failed to load news');
       }
@@ -77,6 +82,8 @@ class NewsController extends GetxController {
             .map((json) => NewsModel.fromJson(json))
             .where((article) => article.urlToImage != null)
             .toList();
+        print(categoryNewsList.length);
+        print('$categoryNewsList this is category list');
       } else {
         throw Exception('Failed to load news');
       }
