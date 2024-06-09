@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 import 'package:news_naut/constant/color_palate.dart';
 import 'package:news_naut/data/dummy_data.dart';
 import 'package:news_naut/models/news_model.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../constant/style.dart';
 
