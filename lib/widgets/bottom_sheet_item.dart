@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:news_naut/screens/profile_screen.dart';
 
 import '../constant/color_palate.dart';
 import '../constant/style.dart';
@@ -22,22 +21,18 @@ class BottomSheetItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (title == 'Profile') {
-          Get.to(()=> const ProfileScreen());
-        } else if (title == 'About') {
-          Get.to(()=> const AboutScreen());
-        }else if (title == 'Security') {
-          Get.to(()=> const SecurityPrivacyScreen());
+        if (title == 'About') {
+          Get.to(() => const AboutScreen());
+        } else {
+          Get.to(() => const SecurityPrivacyScreen());
         }
       },
       child: Container(
-        //margin: const EdgeInsets.only( right: 16, left: 16),
         padding: const EdgeInsets.all(24),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           color: containerColor,
         ),
-
         child: Row(
           children: [
             Expanded(
@@ -56,7 +51,10 @@ class BottomSheetItem extends StatelessWidget {
                 ],
               ),
             ),
-            Image.asset(image,color: textBlue,),
+            Image.asset(
+              image,
+              color: textBlue,
+            ),
           ],
         ),
       ),

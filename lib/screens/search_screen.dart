@@ -59,6 +59,7 @@ class _SearchScreenState extends State<SearchScreen> {
               border: InputBorder.none,
 
             ),
+            cursorColor: justWhite,
             style: styleWB16,
             onChanged: _onSearchChanged,
           ),

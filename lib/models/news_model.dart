@@ -1,5 +1,3 @@
-
-
 class NewsModel {
   final String? author;
   final String title;
@@ -14,7 +12,7 @@ class NewsModel {
     required this.title,
     this.description,
     required this.url,
-     this.urlToImage,
+    this.urlToImage,
     required this.publishedAt,
     this.content,
   });

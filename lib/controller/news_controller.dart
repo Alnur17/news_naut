@@ -7,8 +7,10 @@ import 'package:news_naut/constant/urls.dart';
 import 'package:news_naut/models/news_model.dart';
 
 class NewsController extends GetxController {
-
   var breakingNewsList = <NewsModel>[].obs;
+  var recNewsList = <NewsModel>[].obs;
+  var searchList = <NewsModel>[].obs;
+  var categoryNewsList = <NewsModel>[].obs;
 
   Future<void> getBreakingNews() async {
     try {
@@ -17,20 +19,16 @@ class NewsController extends GetxController {
         List<dynamic> data = json.decode(response.body)['articles'];
         breakingNewsList.value = data
             .map((json) => NewsModel.fromJson(json))
-            .where((article) => article.urlToImage != null )
+            .where((article) => article.urlToImage != null)
             .toList();
-        print(breakingNewsList.length);
-        print('$breakingNewsList This is breaking news');
-
+        print('${breakingNewsList.length} breaking news articles loaded');
       } else {
-        throw Exception('Failed to load news');
+        throw Exception('Failed to load breaking news');
       }
     } catch (e) {
-      print(e);
+      print('Error loading breaking news: $e');
     }
   }
-
-  var recNewsList = <NewsModel>[].obs;
 
   Future<void> recommendedNews() async {
     try {
@@ -41,17 +39,14 @@ class NewsController extends GetxController {
             .map((json) => NewsModel.fromJson(json))
             .where((article) => article.urlToImage != null)
             .toList();
-        print(recNewsList.length);
-        print('$recNewsList This is recommended news');
+        print('${recNewsList.length} recommended news articles loaded');
       } else {
-        throw Exception('Failed to load news');
+        throw Exception('Failed to load recommended news');
       }
     } catch (e) {
-      print(e);
+      print('Error loading recommended news: $e');
     }
   }
-
-  var searchList = <NewsModel>[].obs;
 
   Future<void> searchNews(String query) async {
     try {
@@ -62,16 +57,14 @@ class NewsController extends GetxController {
             .map((json) => NewsModel.fromJson(json))
             .where((article) => article.urlToImage != null)
             .toList();
-        print(searchList.length);
+        print('${searchList.length} search results loaded');
       } else {
-        throw Exception('Failed to load news');
+        throw Exception('Failed to load search results');
       }
     } catch (e) {
-      print(e);
+      print('Error loading search results: $e');
     }
   }
-
-  var categoryNewsList = <NewsModel>[].obs;
 
   Future<void> getNewsByCategory(String query) async {
     try {
@@ -82,13 +75,12 @@ class NewsController extends GetxController {
             .map((json) => NewsModel.fromJson(json))
             .where((article) => article.urlToImage != null)
             .toList();
-        print(categoryNewsList.length);
-        print('$categoryNewsList this is category list');
+        print('${categoryNewsList.length} category news articles loaded');
       } else {
-        throw Exception('Failed to load news');
+        throw Exception('Failed to load category news');
       }
     } catch (e) {
-      print(e);
+      print('Error loading category news: $e');
     }
   }
 }

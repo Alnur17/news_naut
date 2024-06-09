@@ -8,10 +8,3 @@ const Color containerColor = Color(0xFF252525);
 const Color searchFieldText = Color(0xB3FFFFFF);
 const Color matteBlack = Color(0xFF28282B);
 const Color justWhite = Color(0xFFffffff);
-
-final Gradient darkGradient = LinearGradient(
-  colors: [matteBlack, Colors.grey[700]!],
-  begin: Alignment.bottomLeft,
-  end: Alignment.topRight,
-);
-

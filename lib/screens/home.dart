@@ -27,15 +27,6 @@ class _HomeScreenState extends State<HomeScreen> {
   bool _showGif = true;
   Timer? _timer;
   NewsController newsController = Get.find<NewsController>();
-  List<String> categories = [
-    'Technology',
-    'Business',
-    'Health',
-    'Entertainment',
-    'Sports',
-    'General',
-    'Science'
-  ];
 
   @override
   void initState() {
@@ -46,8 +37,12 @@ class _HomeScreenState extends State<HomeScreen> {
       });
     });
 
-    newsController.getBreakingNews();
-    newsController.recommendedNews();
+    initializer();
+  }
+
+  initializer()async{
+    await newsController.getBreakingNews();
+    await newsController.recommendedNews();
   }
 
   @override
@@ -140,35 +135,80 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           );
         } else {
-          return ListView(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      'Breaking News',
-                      style: styleWB20,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Get.to(()=> const SeeAllBreakingNews());
-                      },
-                      child: const Text(
-                        'See all',
-                        style: styleWB16,
+          return RefreshIndicator(
+            backgroundColor: searchField,
+            color: textGold,
+            onRefresh: () async {
+              await initializer();
+            },
+            child: ListView(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'Breaking News',
+                        style: styleWB20,
                       ),
-                    ),
-                  ],
+                      InkWell(
+                        onTap: () {
+                          Get.to(() => const SeeAllBreakingNews());
+                        },
+                        child: const Text(
+                          'See all',
+                          style: styleWB16,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
-                child: Row(
-                  children: newsController.breakingNewsList.map((news) {
-                    return BreakingNewsCard(
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
+                  child: Row(
+                    children: newsController.breakingNewsList.map((news) {
+                      return BreakingNewsCard(
+                        image: news.urlToImage ?? defaultImage,
+                        time: news.publishedAt,
+                        title: news.title,
+                        author: news.author ?? 'Unknown',
+                        ontap: () {
+                          Get.to(() => NewsDetailPage(
+                                news: news,
+                              ));
+                        },
+                      );
+                    }).toList(),
+                  ),
+                ),
+                buildCategoryChips(),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: 12, right: 12, top: 12, bottom: 12),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'News for you',
+                        style: styleWB20,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Get.to(() => const SeeAllNewsForYou());
+                        },
+                        child: const Text(
+                          'See all',
+                          style: styleWB16,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Column(
+                  children: newsController.recNewsList.map((news) {
+                    return NewsTile(
                       image: news.urlToImage ?? defaultImage,
                       time: news.publishedAt,
                       title: news.title,
@@ -181,46 +221,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   }).toList(),
                 ),
-              ),
-              buildCategoryChips(),
-              Padding(
-                padding: const EdgeInsets.only(
-                    left: 12, right: 12, top: 12, bottom: 12),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      'News for you',
-                      style: styleWB20,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Get.to(()=> const SeeAllNewsForYou());
-                      },
-                      child: const Text(
-                        'See all',
-                        style: styleWB16,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Column(
-                children: newsController.recNewsList.map((news) {
-                  return NewsTile(
-                    image: news.urlToImage ?? defaultImage,
-                    time: news.publishedAt,
-                    title: news.title,
-                    author: news.author ?? 'Unknown',
-                    ontap: () {
-                      Get.to(() => NewsDetailPage(
-                            news: news,
-                          ));
-                    },
-                  );
-                }).toList(),
-              ),
-            ],
+              ],
+            ),
           );
         }
       }),

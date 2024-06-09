@@ -3,20 +3,17 @@ import 'package:flutter/material.dart';
 import 'color_palate.dart';
 
 const styleBB24 = TextStyle(
-  //color: Color(0xffFFA500),
   color: textBlue,
   fontSize: 24,
   fontWeight: FontWeight.bold,
 );
 
 const styleBB20 = TextStyle(
-  //color: Color(0xffFFA500),
   color: textBlue,
   fontSize: 20,
   fontWeight: FontWeight.bold,
 );
 const styleBB16 = TextStyle(
-  //color: Color(0xffFFA500),
   color: textBlue,
   fontSize: 16,
   fontWeight: FontWeight.bold,
